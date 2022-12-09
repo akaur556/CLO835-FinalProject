@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-config
+data:
+  IMAGE_URL: "https://clo835-finalproject.s3.amazonaws.com/image.jpg"
