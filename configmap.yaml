@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: webapp-config
 data:
-  IMAGE_URL: "https://clo835-finalproject.s3.amazonaws.com/image.jpg"
+  IMAGE_URL: "https://clo835-finalproject.s3.amazonaws.com/image.jpg" #use pre-signed URL S3 image link

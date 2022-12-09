@@ -76,7 +76,9 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR], IMAGE_URL=IMAGE_URL)
+    print("location of the image:")
+    print(IMAGE_URL)
+    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR], img_url=IMAGE_URL)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
@@ -107,9 +109,10 @@ def FetchData():
 
     finally:
         cursor.close()
-
+    print("location of the image:")
+    print(IMAGE_URL)
     return render_template("getempoutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR])
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR], img_url=IMAGE_URL)
 
 if __name__ == '__main__':
     
