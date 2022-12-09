@@ -19,9 +19,9 @@ spec:
         name: mysql
         ports:
         - containerPort: 3306
-        envFrom:
-        - secretRef:
-              name: mysecret
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: pw
         volumeMounts:
         - mountPath: /var/lib/mysql
           name: mysql-pvc
