@@ -76,7 +76,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR])
+    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR], IMAGE_URL=$IMAGE_URL)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
