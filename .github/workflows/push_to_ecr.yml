@@ -35,7 +35,7 @@ jobs:
         IMAGE_TAG1: db
         
       run: |
-        cd Application_code/
+        cd Application\ code/
         
         # Docker build 
         docker build -t my_app -f Dockerfile .
