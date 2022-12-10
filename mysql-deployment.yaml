@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: final
+  labels:
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+     app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: 940156990945.dkr.ecr.us-east-1.amazonaws.com/clo835-mysql-repo:db
+        name: mysql
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: pw
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-pvc
+      volumes:
+        - name: mysql-pvc
+          persistentVolumeClaim:
+            claimName: mysql-pvc

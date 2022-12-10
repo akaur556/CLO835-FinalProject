@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+  namespace: final
+  labels:
+    app: employees
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
+    spec:
+      containers:
+      - image: 940156990945.dkr.ecr.us-east-1.amazonaws.com/clo835-app-repo:app
+        name: webapp
+        ports:
+        - containerPort: 81
+        envFrom:
+        - secretRef:
+              name: mysecret
+        env:
+        - name: DBHOST
+          value: "my-sql.final"
+        - name: DBPORT
+          value: "3306"
+        - name: IMAGE_URL
+          valueFrom: 
+           configMapKeyRef:
+            name: webapp-config
+            key: IMAGE_URL

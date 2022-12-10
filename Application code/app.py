@@ -13,7 +13,8 @@ DBPWD = os.environ.get("DBPWD") or "passwors"
 DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "lime"
 DBPORT = int(os.environ.get("DBPORT"))
-IMAGE_URL = "https://clo835.s3.amazonaws.com/image.jpg"
+IMAGE_URL = os.environ.get("IMAGE_URL")
+TITLE = os.environ.get("TITLE")
 
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
@@ -48,11 +49,11 @@ COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink", "lim
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('addemp.html', color=color_codes[COLOR])
+    return render_template('addemp.html', img_url=IMAGE_URL, title=TITLE)
 
 @app.route("/about", methods=['GET','POST'])
 def about():
-    return render_template('about.html', color=color_codes[COLOR])
+    return render_template('about.html', img_url=IMAGE_URL, title=TITLE)
     
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
@@ -76,11 +77,13 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR])
+    print("location of the image:")
+    print(IMAGE_URL)
+    return render_template('addempoutput.html', name=emp_name, img_url=IMAGE_URL, title=TITLE)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
-    return render_template("getemp.html", color=color_codes[COLOR])
+    return render_template("getemp.html", img_url=IMAGE_URL, title=TITLE)
 
 
 @app.route("/fetchdata", methods=['GET','POST'])
@@ -107,9 +110,10 @@ def FetchData():
 
     finally:
         cursor.close()
-
+    print("location of the image:")
+    print(IMAGE_URL)
     return render_template("getempoutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR])
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], img_url=IMAGE_URL, title=TITLE)
 
 if __name__ == '__main__':
     
