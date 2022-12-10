@@ -33,3 +33,9 @@ spec:
            configMapKeyRef:
             name: webapp-config
             key: IMAGE_URL
+        - name: TITLE
+          valueFrom: 
+           configMapKeyRef:
+            name: webapp-config
+            key: TITLE
+            
