@@ -25,7 +25,7 @@ spec:
               name: mysecret
         env:
         - name: DBHOST
-          value: "my-sql.lab3"
+          value: "my-sql.final"
         - name: DBPORT
           value: "3306"
         - name: IMAGE_URL
