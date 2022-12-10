@@ -48,11 +48,11 @@ COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink", "lim
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('addemp.html', color=color_codes[COLOR])
+    return render_template('addemp.html', img_url=IMAGE_URL)
 
 @app.route("/about", methods=['GET','POST'])
 def about():
-    return render_template('about.html', color=color_codes[COLOR])
+    return render_template('about.html', img_url=IMAGE_URL)
     
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
@@ -78,11 +78,11 @@ def AddEmp():
     print("all modification done...")
     print("location of the image:")
     print(IMAGE_URL)
-    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR], img_url=IMAGE_URL)
+    return render_template('addempoutput.html', name=emp_name, img_url=IMAGE_URL)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
-    return render_template("getemp.html", color=color_codes[COLOR])
+    return render_template("getemp.html", img_url=IMAGE_URL)
 
 
 @app.route("/fetchdata", methods=['GET','POST'])
@@ -112,7 +112,7 @@ def FetchData():
     print("location of the image:")
     print(IMAGE_URL)
     return render_template("getempoutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR], img_url=IMAGE_URL)
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], img_url=IMAGE_URL)
 
 if __name__ == '__main__':
     
